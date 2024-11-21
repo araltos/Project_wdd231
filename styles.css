@@ -1,0 +1,221 @@
+:root {
+    --primary-color: #f4f4f9;
+    --secondary-color: #4a90e2;
+    --accent-color: #ff6b6b;
+    --text-color: #333333;
+    --heading-font: "IM Roboto", sans-serif;
+    --paragraph-font: "Roboto", sans-serif;
+    --button-background: var(--secondary-color);
+    --button-hover-background: var(--accent-color);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: var(--primary-color);
+    font-family: var(--paragraph-font);
+    color: var(--text-color);
+    font-size: medium;
+}
+
+header {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+footer {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.outask {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: medium;
+}
+
+.points-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+}
+
+.points {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 20%;
+    margin-right: auto;
+    font-size: medium;
+}
+
+.photo {
+    width: 100%;
+    height: 45%;
+    max-width: 400px;
+    margin: 10px auto 0 auto;
+    object-fit: cover;
+    display: block;
+}
+
+.intask {
+    margin: 20px 0;
+    padding-left: 25%;
+    display: flex;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.forward {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 200px;
+    width: auto;
+    margin: 10px 0;
+    margin-left: auto;
+    margin-right: 25%;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.forward:hover {
+    background-color: var(--accent-color);
+}
+
+.back {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 200px;
+    width: auto;
+    margin: 10px 0;
+    margin-left: auto;
+    margin-right: 15%;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.back:hover {
+    background-color: var(--accent-color);
+}
+
+button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--accent-color);
+}
+
+#task-container {
+    list-style-type: none;
+    padding: 0;
+}
+
+#task-container li {
+    padding: 10px;
+    border-bottom: 1px solid var(--text-color);
+}
+
+#task-container li:last-child {
+    border-bottom: none;
+}
+
+.delete-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}
+.qr-code-container {
+    /* margin: 0 0 20px 0;
+    margin-left: 0;
+    padding-left: 15%;
+    width: 100%; */
+    margin: 20px auto;
+    padding-left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#qr-code {
+    width: 128px;
+    height: 128px;
+    display: block;
+}

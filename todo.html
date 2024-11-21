@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="icon" href="logo.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="logo.png" sizes="16x16" type="image/png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+  <script src="main.js" type="module" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Your To-Do List</h1>
+  </header>
+  
+  <main>
+    <p>Use the input field below to add tasks to your To-Do List. Click on the "Add Task" button to save it. You can mark tasks as complete or delete them.</p>
+    
+    <section class="intask">
+      <input type="text" id="task-input" placeholder="Enter a new task">
+      <button id="add-task-button">Add Task</button>
+    </section>
+    
+    <section class="outask" id="tasks-list">
+      <h2>Tasks:</h2>
+      <ul id="task-container">
+        <li>No tasks added yet!</li>
+      </ul>
+    </section>
+    <section class="qr-code-container" id="qr-code-container">
+      <h2>Your QR Code</h2>
+      <div id="qr-code"></div>
+    </section>
+    <a href="index.html" class="back">Back to Homepage</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 To-Do List Manager</p>
+  </footer>
+</body>
+</html>
