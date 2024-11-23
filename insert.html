@@ -32,24 +32,29 @@
   </header>
   
   <main>
-    <p>Use the input field below to add tasks to your To-Do List. Click on the "Add Task" button to save it. You can mark tasks as complete or delete them.</p>
-    
+    <section class="search-bar-container">
+      <input type="text" class="search-input" placeholder="Search...">
+      <button class="search-button">Search</button>
+    </section>
+
     <section class="intask">
-      <input type="text" id="task-input" placeholder="Enter a new task">
-      <button id="add-task-button">Add Task</button>
+      <input type="text" id="task-input" placeholder="Enter a word task">
+      <button id="add-task-button">Add Word</button>
     </section>
     
     <section class="outask" id="tasks-list">
-      <h2>Tasks:</h2>
+      <h2>Words:</h2>
       <ul id="task-container">
-        <li>No tasks added yet!</li>
+        <li>No words added yet!</li>
       </ul>
     </section>
-    <section class="qr-code-container" id="qr-code-container">
-      <h2>Your QR Code</h2>
-      <div id="qr-code"></div>
+
+    <section class="api-words" id="#">
+      <h2>Meaning:</h2>
+      <ul id="task-container">
+        <li>Nothing yet...</li>
+      </ul>
     </section>
-    <a href="index.html" class="back">Back to Homepage</a>
   </main>
 
   <footer>
