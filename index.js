@@ -35,7 +35,7 @@ function addnavIcon(){
 
   if (window.innerWidth > 900){
     if (!document.querySelector('#navimg')) {
-      navIcon.innerHTML = `<button id="navimg"><img src="/logos/menu.png" alt="Icon"></button>`;
+      navIcon.innerHTML = `<button id="navimg"><img src="logos/menu.png" alt="Icon"></button>`;
     }
 
     document.querySelector('#navimg').addEventListener('click', toggleNav);
