@@ -237,29 +237,6 @@ input[type="text"] {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
-.forward {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    max-width: 200px;
-    width: auto;
-    margin: 10px 0;
-    margin-left: auto;
-    margin-right: 10%;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-}
-
-.forward:hover {
-    background-color: var(--accent-color);
-}
-
 .back {
     background-color: var(--secondary-color);
     color: white;
@@ -341,13 +318,7 @@ button:hover {
 }
 
 @media screen and (min-width: 900px){
-    nav ul{
-        display: none;
-    }
-    #navIcon img{
-        z-index: 1;
-        display: block;
-    }
+    /* header */
     header {
         display: flex;
         flex-direction: row;
@@ -357,6 +328,45 @@ button:hover {
     .headerinfo {
         justify-content: flex-start; 
     }
+    /* nav */
+    nav ul{
+        display: none;
+    }
+    #navIcon img{
+        z-index: 1;
+        display: block;
+    }
+    .nav900 {
+        width: 30%;
+        height: 80%;
+        background-color: rgba(0, 0, 0, 0.75);
 
+        position: absolute;
+        top: 130px; 
+        right: 20px;
+        border-radius: 5px;
+        z-index: 3;
+    }
+    .nav900 ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+      }
+    .nav900 li{
+        padding: 20px 0 ;
+    }
+    .nav900 a:link,.nav900 a:visited {
+        color: white;
+        text-decoration: none;
+        width: 100%;
+        font-family: var(--heading-font);
+        font-size: 1.2rem;
+        display: inline-block;
+        padding-top: 20px;
+        }  
+    
   }
   
