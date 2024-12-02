@@ -7,7 +7,7 @@
     <meta name="description" content="Vocabulary learning app" />
     <meta name="author" content="gakyeong/santiago" />
     <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="./insert.js" defer></script>
+    <script type="module" src="test.js" defer></script>
     <link rel="icon" href="logos/Vocabulary Buddy-.png" type="image/png" />
     <link
       rel="icon"
@@ -21,9 +21,6 @@
       sizes="16x16"
       type="image/png"
     />
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-  <script src="main.js" type="module" defer></script> -->
   </head>
   <body>
     <header>
@@ -42,29 +39,26 @@
     </header>
 
     <main>
-      <section class="search-bar-container">
-        <input type="text" class="search-input" placeholder="Search..." />
-        <button class="search-button">Search</button>
-      </section>
-
-      <section class="intask">
-        <input type="text" id="task-input" placeholder="Enter a word task" />
-        <button id="add-task-button">Add Word</button>
-      </section>
-
-      <section class="outask" id="tasks-list">
-        <h2>Words:</h2>
-        <ul id="task-container">
-          <li>No words added yet!</li>
-        </ul>
-      </section>
-
-      <section class="api-words" id="#">
-        <h2>Meaning:</h2>
-        <ul id="task-container">
-          <li>Nothing yet...</li>
-        </ul>
-      </section>
+      <div class="thirdpage">
+        <section class="flashcard">
+          <div class="flashcard-inner">
+            <h2 class="flashcardfront">Words:</h2>
+            <p class="flashcardback">working</p>
+          </div>
+        </section>
+        <section class="hint1">
+          <div class="flashcard-inner">
+            <h2 class="flashcardfront">Hint:</h2>
+            <p class="flashcardback">working</p>
+          </div>
+        </section>
+        <section class="hint2">
+          <div class="flashcard-inner">
+            <h2 class="flashcardfront">Hint:</h2>
+            <p class="flashcardback">working</p>
+          </div>
+        </section>
+      </div>
     </main>
 
     <footer>
