@@ -79,23 +79,6 @@ window.deleteTask = function(id) {
     generateQRCode();
 };
 
-function generateQRCode() {
-    const baseURL = window.location.href;
-    const params = new URLSearchParams();
-
-    params.append('taskCount', tasks.length);
-    params.append('timestamp', Date.now());
-
-    const fullURL = `${baseURL}?${params.toString()}`;
-    qrCodeElement.innerHTML = '';
-
-    $(qrCodeElement).qrcode({
-        width: 128,
-        height: 128,
-        text: fullURL
-    });
-}
-
 addTaskButton.addEventListener('click', addTask);
 taskInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
