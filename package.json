@@ -1,0 +1,17 @@
+{
+  "name": "project_wdd231",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build --emptyOutDir",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "vite": "^6.0.2"
+  }
+}

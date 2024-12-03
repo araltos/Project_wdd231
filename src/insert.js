@@ -1,4 +1,5 @@
 import {addnavIcon} from "./index.js";
+const apiKey = import.meta.env.VITE_DICTIONARY;
 
 addnavIcon();
 window.addEventListener('resize', addnavIcon);
@@ -20,8 +21,6 @@ window.onload = function() {
         tasks = storedTasks;
         displayTasks();
     }
-    
-    setTimeout(generateQRCode, 500);
 };
 
 
@@ -85,3 +84,12 @@ taskInput.addEventListener('keydown', function(event) {
         addTask();
     }
 });
+
+
+async function getJson() {
+    const respond = await fetch("https://www.dictionaryapi.com/api/v3/references/sd3/json/umpire?key="+apiKey)
+    const data = await respond.json()
+    console.log(data)
+}
+
+getJson()
