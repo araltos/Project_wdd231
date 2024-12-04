@@ -1,4 +1,4 @@
-import {addnavIcon} from "./index.js";
+import { addnavIcon } from "./index.js";
 const apiKey = import.meta.env.VITE_DICTIONARY;
 
 addnavIcon();
@@ -15,11 +15,9 @@ window.onload = function() {
     }
 };
 
-
 const taskInput = document.getElementById('task-input');
 const addTaskButton = document.getElementById('add-task-button');
 const taskContainer = document.getElementById('task-container');
-const qrCodeElement = document.getElementById('qr-code');
 
 function addTask() {
     const taskText = taskInput.value.trim();
@@ -34,7 +32,6 @@ function addTask() {
     tasks.push(task);
     displayTasks();
     taskInput.value = "";
-    generateQRCode();
 }
 
 window.addTask = addTask;
@@ -61,13 +58,11 @@ function displayTasks() {
 window.toggleTask = function(id) {
     tasks = tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task);
     displayTasks();
-    generateQRCode();
 };
 
 window.deleteTask = function(id) {
     tasks = tasks.filter(task => task.id !== id);
     displayTasks();
-    generateQRCode();
 };
 
 addTaskButton.addEventListener('click', addTask);
@@ -77,11 +72,10 @@ taskInput.addEventListener('keydown', function(event) {
     }
 });
 
-
 async function getJson() {
-    const respond = await fetch("https://www.dictionaryapi.com/api/v3/references/sd3/json/umpire?key="+apiKey)
-    const data = await respond.json()
-    console.log(data)
+    const respond = await fetch("https://www.dictionaryapi.com/api/v3/references/sd3/json/umpire?key=" + apiKey);
+    const data = await respond.json();
+    console.log(data);
 }
 
-getJson()
+getJson();

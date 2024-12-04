@@ -134,6 +134,19 @@ main {
 
 /* Search Bar */
 
+/* .search-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin: 25px auto;
+  padding: 10px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+} */
 .search-bar-container {
   display: flex;
   align-items: center;
@@ -141,7 +154,8 @@ main {
   gap: 10px;
   width: 100%;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 25px auto 25px auto; /* Centered vertically but auto left/right */
+  margin-left: auto; /* Moves the element to the right */
   padding: 10px;
   background-color: white;
   border-radius: 15px;
@@ -182,6 +196,8 @@ main {
   max-width: 600px;
   margin: 10px 30%;
   margin-bottom: 1;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #task-input {
