@@ -106,26 +106,30 @@ main {
   font-size: medium;
 }
 
-.outask {
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  margin-left: 60%;
-  width: 30%;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  font-size: medium;
-  text-align: center;
+.container {
+  display: flex; /* Enables Flexbox */
+  gap: 40px; /* Space between sections */
+  justify-content: flex-end; /* Aligns .outask to the right */
+  align-items: flex-start; /* Aligns sections at the top */
+  width: 100%; /* Ensures container spans full width */
 }
 
-/* API box */
 .api-words {
   background-color: white;
   border-radius: 10px;
-  padding: 20px;
-  margin: 20px;
-  width: 65%;
+  padding: 30px;
+  width: 65%; /* Adjust this for desired size */
+  min-width: 300px; /* Optional: Set a minimum width */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  font-size: medium;
+}
+
+.outask {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  width: 30%; /* Adjust this for desired size */
+  min-width: 200px; /* Optional: Set a minimum width */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Search Bar */
