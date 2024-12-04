@@ -7,14 +7,6 @@ window.addEventListener('resize', addnavIcon);
 //  add words
 let tasks = [];
 
-// window.onload = function() {
-//     const storedTasks = JSON.parse(localStorage.getItem('tasks'));
-//     if (storedTasks) {
-//         tasks = storedTasks;
-//         displayTasks();
-//         generateQRCode();
-//     }
-// };
 window.onload = function() {
     const storedTasks = JSON.parse(localStorage.getItem('tasks'));
     if (storedTasks) {
