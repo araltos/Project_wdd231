@@ -30,6 +30,7 @@ body {
   font-family: var(--paragraph-font);
   color: var(--text-color);
   font-size: medium;
+  
 }
 /* header */
 header {
@@ -90,11 +91,16 @@ footer {
 
 /* main */
 main {
-  flex: 1;
+  /* flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
+  align-items: center; */
+  display: flex;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  height: 100vh; 
 }
 .intro {
   background-color: white;
@@ -108,34 +114,36 @@ main {
 
 .container {
   grid-column: 1/3;
-  display: flex; /* Enables Flexbox */
-  gap: 40px; /* Space between sections */
-  justify-content: flex-end; /* Aligns .outask to the right */
-  align-items: flex-start; /* Aligns sections at the top */
-  width: 100%; /* Ensures container spans full width */
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .api-words {
   background-color: white;
   border-radius: 10px;
   padding: 30px;
-  width: 65%; /* Adjust this for desired size */
-  min-width: 300px; /* Optional: Set a minimum width */
+  width: 65%;
+  min-width: 300px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 25px;
 }
 
 .outask {
   background-color: white;
   border-radius: 10px;
-  padding: 30px;
-  width: 30%; /* Adjust this for desired size */
-  min-width: 200px; /* Optional: Set a minimum width */
+  padding: 35px;
+  width: 30%;
+  min-width: 200px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
 }
 
 /* Search Bar */
-
-/* .search-bar-container {
+/* 
+ .search-bar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -147,7 +155,7 @@ main {
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-} */
+}
 .search-bar-container {
   display: flex;
   align-items: center;
@@ -155,7 +163,7 @@ main {
   gap: 10px;
   width: 100%;
   max-width: 600px;
-  margin: 25px auto 25px auto; /* Centered vertically but auto left/right */
+  margin: 25px auto 25px auto;
   margin-left: auto;
   padding: 10px;
   background-color: white;
@@ -187,18 +195,16 @@ main {
 
 .search-button:hover {
   background-color: var(--accent-color);
-}
+} */
 
 .intask {
-  margin: 20px 0;
   display: flex;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 600px;
-  margin: 10px 30%;
-  margin-bottom: 1;
-  margin-right: auto;
-  margin-left: auto;
+  max-width: 600px; /* Prevents it from stretching too wide */
+  margin: 0 auto; /* Center horizontally */
+  padding: 50px 0;
 }
 
 #task-input {
