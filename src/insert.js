@@ -1,7 +1,14 @@
+import { addnavIcon } from "./index.js";
+
 // Configuration
 const apiKey = import.meta.env.VITE_DICTIONARY;
 const BASE_URL = "https://www.dictionaryapi.com/api/v3/references/sd3/json/";
 
+// Add navigation icons if needed
+// addnavIcon();
+// window.addEventListener('resize', addnavIcon);
+
+// Dictionary Service
 class DictionaryService {
     constructor(apiKey, baseUrl) {
         this.apiKey = apiKey;
@@ -12,9 +19,7 @@ class DictionaryService {
         if (!word) throw new Error("No word provided");
 
         try {
-            // Ensure URL encoding for special characters
-            const encodedWord = encodeURIComponent(word);
-            const response = await fetch(`${this.baseUrl}${encodedWord}?key=${this.apiKey}`, {
+            const response = await fetch(`${this.baseUrl}${word}?key=${this.apiKey}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json'
@@ -26,8 +31,6 @@ class DictionaryService {
             }
 
             const data = await response.json();
-            
-            // More robust definition extraction
             return this.processWordData(data);
         } catch (error) {
             console.error('Dictionary API Error:', error);
@@ -39,28 +42,19 @@ class DictionaryService {
     }
 
     processWordData(rawData) {
-        // Added more robust checking
         if (!rawData || !rawData.length) {
-            return {
-                word: 'Unknown',
-                definition: 'No definition available'
-            };
+            throw new Error('No definition found');
         }
 
         const firstDefinition = rawData[0];
-        
-        // Multiple fallback strategies for definition
-        const definition = 
-            firstDefinition.shortdef?.[0] ||  // Primary method
-            'No definition available';
-
         return {
             word: firstDefinition.meta?.id || 'Unknown',
-            definition: definition
+            definition: firstDefinition.shortdef?.[0] || 'No definition available'
         };
     }
 }
 
+// Task Manager
 class TaskManager {
     constructor() {
         this.tasks = [];
@@ -69,7 +63,6 @@ class TaskManager {
         this.taskContainer = document.getElementById('task-container');
         this.apiTaskContainer = document.getElementById('api-task-container');
         
-        // Initialize Dictionary Service
         this.dictionaryService = new DictionaryService(apiKey, BASE_URL);
         
         this.initializeEventListeners();
@@ -100,7 +93,6 @@ class TaskManager {
         };
 
         try {
-            // Fetch definition before creating task
             const wordDefinition = await this.dictionaryService.fetchWordDefinition(taskText);
             task.definition = wordDefinition.definition;
         } catch (error) {
@@ -113,7 +105,6 @@ class TaskManager {
     }
 
     displayTasks() {
-        // Task list rendering remains the same
         this.taskContainer.innerHTML = this.tasks.length 
             ? this.tasks.map(task => `
                 <li>
@@ -128,15 +119,15 @@ class TaskManager {
             `).join('')
             : "<li>No words added yet!</li>";
 
-        // Modified to show ALL tasks' definitions initially
-        this.apiTaskContainer.innerHTML = this.tasks.length
-            ? this.tasks.map(task => `
+        const checkedTasks = this.tasks.filter(task => task.completed);
+        this.apiTaskContainer.innerHTML = checkedTasks.length
+            ? checkedTasks.map(task => `
                 <li>
                     <strong>${task.description}</strong>: 
                     ${task.definition || 'Definition not found'}
                 </li>
             `).join('')
-            : "<li>Nothing yet...</li>";
+            : "<li>No checked tasks yet...</li>";
 
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
@@ -154,9 +145,11 @@ class TaskManager {
     }
 }
 
+// Application Initialization
 document.addEventListener('DOMContentLoaded', () => {
     window.taskManager = new TaskManager();
 });
+
 
 
 
