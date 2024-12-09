@@ -97,7 +97,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh; 
+  min-height: 0;
 }
 .intro {
   background-color: white;
