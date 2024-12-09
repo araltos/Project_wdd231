@@ -8,9 +8,50 @@ const BASE_URL = "https://www.dictionaryapi.com/api/v3/references/sd3/json/";
 addnavIcon();
 window.addEventListener('resize', addnavIcon);
 
-// Dictionary API Service (remains the same)
+// Dictionary API Service
 class DictionaryService {
-    // ... (previous implementation unchanged)
+    constructor(apiKey, baseUrl) {
+        this.apiKey = apiKey;
+        this.baseUrl = baseUrl;
+    }
+
+    async fetchWordDefinition(word) {
+        if (!word) throw new Error("No word provided");
+
+        try {
+            const response = await fetch(`${this.baseUrl}${word}?key=${this.apiKey}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return this.processWordData(data);
+        } catch (error) {
+            console.error('Dictionary API Error:', error);
+            return {
+                word: word,
+                definition: 'Definition not found'
+            };
+        }
+    }
+
+    processWordData(rawData) {
+        if (!rawData || !rawData.length) {
+            throw new Error('No definition found');
+        }
+
+        const firstDefinition = rawData[0];
+        return {
+            word: firstDefinition.meta?.id || 'Unknown',
+            definition: firstDefinition.shortdef?.[0] || 'No definition available'
+        };
+    }
 }
 
 // Task Management Class
@@ -46,23 +87,23 @@ class TaskManager {
         const taskText = this.taskInput.value.trim().toLowerCase();
         if (!taskText) return;
 
-        const task = {
-            id: Date.now(),
-            description: taskText,
-            completed: false
-        };
-
-        // Fetch definition before adding task
         try {
             const wordDefinition = await this.dictionaryService.fetchWordDefinition(taskText);
-            task.definition = wordDefinition.definition;
-        } catch (error) {
-            task.definition = 'Definition not found';
-        }
+            
+            const task = {
+                id: Date.now(),
+                description: taskText,
+                completed: false,
+                definition: wordDefinition.definition
+            };
 
-        this.tasks.push(task);
-        this.displayTasks();
-        this.taskInput.value = "";
+            this.tasks.push(task);
+            this.displayTasks();
+            this.taskInput.value = "";
+        } catch (error) {
+            console.error('Error adding task:', error);
+            alert('Could not add word. Please try again.');
+        }
     }
 
     displayTasks() {
@@ -81,7 +122,7 @@ class TaskManager {
             `).join('')
             : "<li>No words added yet!</li>";
 
-        // Update API/Meaning container to only show checked words
+        // Update API/Meaning container - ONLY show checked words with their meanings
         const checkedTasks = this.tasks.filter(task => task.completed);
         this.apiTaskContainer.innerHTML = checkedTasks.length
             ? checkedTasks.map(task => `
