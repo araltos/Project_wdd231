@@ -22,7 +22,6 @@ class DictionaryService {
             const response = await fetch(`${this.baseUrl}${word}?key=${this.apiKey}`, {
                 method: 'GET',
                 headers: {
-                    'X-Api-Key': this.apiKey,
                     'Accept': 'application/json'
                 }
             });
