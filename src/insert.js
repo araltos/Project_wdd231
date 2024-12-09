@@ -1,6 +1,6 @@
 import { addnavIcon } from "./index.js";
 
-// Configuration
+// Configuration - IMPORTANT: Verify this is correct!
 const apiKey = import.meta.env.VITE_DICTIONARY;
 const BASE_URL = "https://www.dictionaryapi.com/api/v3/references/sd3/json/";
 
@@ -8,49 +8,85 @@ const BASE_URL = "https://www.dictionaryapi.com/api/v3/references/sd3/json/";
 addnavIcon();
 window.addEventListener('resize', addnavIcon);
 
-// Dictionary API Service
+// Dictionary API Service with Enhanced Error Handling
 class DictionaryService {
     constructor(apiKey, baseUrl) {
+        if (!apiKey) {
+            console.error('⚠️ No API key provided for dictionary service!');
+        }
         this.apiKey = apiKey;
         this.baseUrl = baseUrl;
     }
 
     async fetchWordDefinition(word) {
-        if (!word) throw new Error("No word provided");
+        console.log('📚 Attempting to fetch definition for:', word);
+
+        if (!word) {
+            console.error('❌ No word provided for definition');
+            return { word, definition: 'No word submitted' };
+        }
 
         try {
-            const response = await fetch(`${this.baseUrl}${word}?key=${this.apiKey}`, {
+            // Construct full URL with careful logging
+            const fullUrl = `${this.baseUrl}${encodeURIComponent(word)}?key=${this.apiKey}`;
+            console.log('🌐 Full API Request URL:', fullUrl);
+
+            const response = await fetch(fullUrl, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json'
                 }
             });
 
+            console.log('📡 Response Status:', response.status);
+
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                console.error(`❌ HTTP Error: ${response.status}`);
+                return { word, definition: 'API request failed' };
             }
 
             const data = await response.json();
+            console.log('📊 Raw API Response:', data);
+
+            // Enhanced error checking
+            if (!data || data.length === 0) {
+                console.warn('⚠️ No definition data found');
+                return { word, definition: 'No definition available' };
+            }
+
             return this.processWordData(data);
+
         } catch (error) {
-            console.error('Dictionary API Error:', error);
-            return {
-                word: word,
-                definition: 'Definition not found'
+            console.error('🔥 Fetch Error:', error);
+            return { 
+                word, 
+                definition: `Definition fetch failed: ${error.message}`
             };
         }
     }
 
     processWordData(rawData) {
-        if (!rawData || !rawData.length) {
-            throw new Error('No definition found');
-        }
+        // More robust definition extraction
+        try {
+            const firstEntry = rawData[0];
 
-        const firstDefinition = rawData[0];
-        return {
-            word: firstDefinition.meta?.id || 'Unknown',
-            definition: firstDefinition.shortdef?.[0] || 'No definition available'
-        };
+            // Different methods to extract definition
+            const definition = 
+                firstEntry.shortdef?.[0] ||  // Primary method
+                firstEntry.def?.[0]?.sseq?.[0]?.[0]?.[1]?.dt?.[1] ||  // Fallback method
+                'No definition found';
+
+            return {
+                word: firstEntry.meta?.id || 'Unknown',
+                definition: definition
+            };
+        } catch (processError) {
+            console.error('🚨 Definition processing error:', processError);
+            return {
+                word: 'Unknown',
+                definition: 'Definition extraction failed'
+            };
+        }
     }
 }
 
