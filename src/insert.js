@@ -2,7 +2,7 @@ import { addnavIcon } from "./index.js";
 
 // Configuration
 const apiKey = import.meta.env.VITE_DICTIONARY;
-const BASE_URL = "https://www.dictionaryapi.com/api/v3/references/sd3/json/";
+const BASE_URL = "https://dictionaryapi.com/api/v3/references/thesaurus/json/";
 
 // Add navigation icons if needed
 // addnavIcon();
