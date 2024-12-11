@@ -95,7 +95,6 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 0;
 }
 .intro {
   background-color: white;
@@ -110,8 +109,7 @@ main {
 .container {
   display: flex; /* Enables Flexbox */
   gap: 40px; /* Space between sections */
-  justify-content: flex-end; /* Aligns .outask to the right */
-  align-items: flex-start; /* Aligns sections at the top */
+  justify-content: space-between; /* Aligns .outask to the right */
   width: 100%; /* Ensures container spans full width */
 }
 
@@ -201,7 +199,6 @@ main {
   align-items: center;
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
   padding: 10px 0;
 }
 
