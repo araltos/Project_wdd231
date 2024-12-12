@@ -5,6 +5,7 @@ function viewNavTemplate() {
         <li><a href="index.html">Home</a></li>
         <li><a href="insert.html">Insert</a></li>
         <li><a href="test.html">Test</a></li>
+        <li><a href="list.html">List</a></li>
       </ul>
     </nav>`;
 }

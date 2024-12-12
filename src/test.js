@@ -60,3 +60,5 @@ function renderTasks() {
 }
 
 document.querySelector("#newword").addEventListener("click", renderTasks);
+
+export { getLocalStorageItem, tasks };

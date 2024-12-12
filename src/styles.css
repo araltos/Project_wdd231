@@ -212,7 +212,8 @@ main {
   margin-right: 10px;
 }
 
-#add-task-button {
+#add-task-button,
+#share {
   padding: 5px 10px;
   background-color: var(--secondary-color);
   color: white;
@@ -221,6 +222,7 @@ main {
   cursor: pointer;
   font-size: 1em;
   height: 50px;
+  margin-right: 10px;
 }
 
 #add-task-button:hover {
