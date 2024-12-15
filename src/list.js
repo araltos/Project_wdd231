@@ -1,40 +1,45 @@
 import { addnavIcon } from "./index.js";
-import { tasks } from "./test.js";
+import { getLocalStorageItem } from "./test.js";
 
 addnavIcon();
 window.addEventListener("resize", addnavIcon);
 
-console.log(window.location);
-function getParam(param) {
-  const paramString = window.location.search;
-  // console.log(window.location);
-  const params = new URLSearchParams(paramString);
-  return params.get(param);
-}
-
-// url parameter
+const tasks = getLocalStorageItem("tasks") || [];
 console.log(tasks);
 
-// 1. Get the `words` parameter from the URL
-const wordsParam = getParam("description");
-if (!wordsParam) {
-  console.error("No 'words' parameter found in the URL.");
-} else {
-  // 2. Parse the list of words
-  const words = wordsParam.split(",");
-  console.log("Words from URL:", words);
-
-  // 3. Lookup each word in localStorage and filter matching descriptions
-  const matchedWords = words.filter((word) => {
-    const storedValue = localStorage.getItem(word); // Get word from localStorage
-    return storedValue !== null; // Match found if the word exists in localStorage
-  });
-
-  console.log("Matched words in localStorage:", matchedWords);
-
-  // 4. Insert matched words into localStorage as a single list
-  localStorage.setItem("matchedWords", JSON.stringify(matchedWords));
-
-  // 5. Redirect to insert.html
-  window.location.href = "insert.html";
+function findTaskByDescription(tasks, description) {
+  return tasks.find((task) => task.description === description);
 }
+
+// Render tasks
+tasks.forEach((task) => {
+  const data = findTaskByDescription(tasks, task.description);
+  console.log(data);
+  if (data) {
+    document
+      .querySelector("#item-list")
+      .insertAdjacentHTML("beforeEnd", `<li>${data.description}</li>`);
+  } else {
+    console.error("Task not found:", task);
+  }
+});
+
+// Share button handler
+function generateTaskUrl(tasks) {
+  const url = new URL(`${window.location.origin}/insert.html`);
+  url.searchParams.append(
+    "words",
+    tasks.map((task) => task.description).join(",")
+  );
+
+  return url.href;
+}
+function handleShare() {
+  const url = generateTaskUrl(tasks);
+
+  // Redirect to the insert.html page with the generated URL
+  window.location.assign(url);
+}
+
+// share button
+document.querySelector("#share").addEventListener("click", handleShare);
