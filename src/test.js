@@ -1,16 +1,11 @@
 import { addnavIcon } from "./index.js";
-
+import { tasks } from "./utility.js";
 addnavIcon();
 window.addEventListener("resize", addnavIcon);
 
 // test card
 
-function getLocalStorageItem(key) {
-  const storedItem = localStorage.getItem(key);
-  return storedItem ? JSON.parse(storedItem) : [];
-}
-const tasks = getLocalStorageItem("tasks");
-console.log(tasks);
+document.querySelector("#newword").addEventListener("click", renderTasks);
 
 function taskTemplate(task) {
   return `
@@ -58,7 +53,3 @@ function renderTasks() {
   document.querySelector(".hint1").addEventListener("click", toggleFlipped);
   document.querySelector(".hint2").addEventListener("click", toggleFlipped);
 }
-
-document.querySelector("#newword").addEventListener("click", renderTasks);
-
-export { getLocalStorageItem, tasks };

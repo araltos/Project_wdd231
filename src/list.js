@@ -1,26 +1,19 @@
 import { addnavIcon } from "./index.js";
-import { getLocalStorageItem } from "./test.js";
+import { tasks } from "./utility.js";
 
 addnavIcon();
 window.addEventListener("resize", addnavIcon);
 
-const tasks = getLocalStorageItem("tasks") || [];
 console.log(tasks);
 
-function findTaskByDescription(tasks, description) {
-  return tasks.find((task) => task.description === description);
-}
-
 // Render tasks
-tasks.forEach((task) => {
-  const data = findTaskByDescription(tasks, task.description);
-  console.log(data);
-  if (data) {
+tasks.forEach(function processTask(task) {
+  if (task.description) {
     document
       .querySelector("#item-list")
-      .insertAdjacentHTML("beforeEnd", `<li>${data.description}</li>`);
+      .insertAdjacentHTML("beforeEnd", `<li>${task.description}</li>`);
   } else {
-    console.error("Task not found:", task);
+    console.error("Task has no description:", task);
   }
 });
 
@@ -34,6 +27,7 @@ function generateTaskUrl(tasks) {
 
   return url.href;
 }
+
 function handleShare() {
   const url = generateTaskUrl(tasks);
 
